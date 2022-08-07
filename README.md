@@ -2,6 +2,7 @@
 This code is a React program where the user can enter their notes and display them on the page.
 The user can also delete the note once they are finished. I also used a bit of material-UI for the buttons 
 and the increased size of the notes.
+If anyone want try the code, [please click at this link](https://juliorojas81871.github.io/Notes/).
 
 # Steps to get code to run:
 1. Open terminal
