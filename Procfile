@@ -1,1 +1,0 @@
-web: cd ./client/ && npm start && npx nodemon Server.js
