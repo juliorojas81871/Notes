@@ -4,13 +4,9 @@
   "description": "This code is a React program where the user can enter their notes and display them on the page.\r The user can also delete the note once they are finished. I also used a bit of material-UI for the buttons \r and the increased size of the notes.\r If anyone want try this code, [please click at this link](https://juliorojas81871.github.io/Notes/).",
   "main": "Server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
-    "start": "node Server.js",
-    "client": "cd client && npm start",
-    "dev": "concurrently -n 'Server,client' -c 'red,green'  \"nodemon Server.js\" \"npm run client\""
+    "build": "cd client && npm install && npm run build",
+    "dev": "cross-env NODE_ENV=development nodemon Server",
+    "start": "node Server"
   },
   "repository": {
     "type": "git",
@@ -31,5 +27,8 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "mongoose": "^6.5.2"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }

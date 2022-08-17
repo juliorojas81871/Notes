@@ -14,39 +14,45 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [isUpdating, setUpdating] = useState("");
   
+  const getNotes = () => axios.get("/get-todo")
+    .then((res) => setTodo(res.data))
+    .catch((err) => console.log(err))
 
   useEffect(() =>{
-    axios.get("http://localhost:5000/get-Notes")
-      .then((res) => setNotes(res.data))
-      .catch((err) => console.log(err));
-  });
+    getNotes()
+  }, []);
+
    
   const addUpdateItem = () => {
     if (isUpdating === "") {
-      axios.post("http://localhost:5000/save-Notes", { title, content })
+      axios.post("/save-Notes", { title, content })
         .then((res) => {
           console.log(res.data);
           setTitle("");
           setContent("");
+          getNotes()
         })
         .catch((err) => console.log(err));
     }
     else{
-      axios.post("http://localhost:5000/update-Notes", { _id: isUpdating, title, content } )
+      axios.post("/update-Notes", { _id: isUpdating, title, content } )
         .then((res) => {
           console.log(res.data);
           setTitle("");
           setContent("");
           setUpdating("");
-          setUpdating("");
+          getNotes()
         })
         .catch((err) => console.log(err));
     }
   }
 
   const deleteNote = (_id) => {
-    axios.post("http://localhost:5000/delete-Notes", { _id })
-      .then((res) => console.log(res.data))
+    axios.post("/delete-Notes", { _id })
+      .then((res) => {
+        console.log(res.data); 
+        getNotes()
+      })
       .catch((err) => console.log(err));
   }
 
