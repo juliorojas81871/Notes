@@ -14,8 +14,8 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [isUpdating, setUpdating] = useState("");
   
-  const getNotes = () => axios.get("/get-todo")
-    .then((res) => setTodo(res.data))
+  const getNotes = () => axios.get("/get-notes")
+    .then((res) => setNotes(res.data))
     .catch((err) => console.log(err))
 
   useEffect(() =>{
@@ -25,7 +25,7 @@ function App() {
    
   const addUpdateItem = () => {
     if (isUpdating === "") {
-      axios.post("/save-Notes", { title, content })
+      axios.post("/save-notes", { title, content })
         .then((res) => {
           console.log(res.data);
           setTitle("");
@@ -35,7 +35,7 @@ function App() {
         .catch((err) => console.log(err));
     }
     else{
-      axios.post("/update-Notes", { _id: isUpdating, title, content } )
+      axios.post("/update-notes", { _id: isUpdating, title, content } )
         .then((res) => {
           console.log(res.data);
           setTitle("");
@@ -48,7 +48,7 @@ function App() {
   }
 
   const deleteNote = (_id) => {
-    axios.post("/delete-Notes", { _id })
+    axios.post("/delete-notes", { _id })
       .then((res) => {
         console.log(res.data); 
         getNotes()
