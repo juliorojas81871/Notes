@@ -70,6 +70,11 @@ function App() {
         <input
             name="title"
             onChange={(e) => setTitle(e.target.value)} 
+            onKeyUp={(e) => {
+              if (e.key === "Enter") {
+                addUpdateItem()
+              }
+            }}
             value={title}
             placeholder="Title"
             type="text" 
@@ -79,6 +84,11 @@ function App() {
           type="text" 
           name="content"
           onChange={(e) => setContent(e.target.value)} 
+          onKeyUp={(e) => {
+            if (e.key === "Enter") {
+                addUpdateItem()
+              }
+          }}
           value={content}
           placeholder="Take a note..."
           rows= '3'
