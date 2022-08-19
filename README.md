@@ -2,9 +2,10 @@
 This code is a React program where the user can enter their notes and display them on the page.
 The user can also delete the note once they are finished. I also used a bit of material-UI for the buttons 
 and the increased size of the notes.
-If anyone want try this code, [please click at this link](https://juliorojas81871.github.io/Notes/).
+If anyone want try this code, [please click at this link](https://keeper--notes--app.herokuapp.com/).
 
-# Steps to get code to run:
+
+# (Need edits, DO NOT FOLLOW STEPS) Steps to get code to run:
 1. Open terminal
 2. Type (You can also download the code):
 ```
@@ -26,4 +27,4 @@ http://localhost:3000/
 ```
 
 # Example Pic:
-![Notes Example Pic](https://github.com/juliorojas81871/Notes/blob/main/pics/main.jpg))
+![Notes Example Pic](https://github.com/juliorojas81871/Notes/blob/main/pics/main.jpg)
