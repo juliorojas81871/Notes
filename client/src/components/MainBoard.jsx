@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import CreateArea from "./CreateArea";
 import Note from "./Note";
 import axios from "axios";
-import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
-import EditIcon from '@material-ui/icons/Edit';
 
-
-function App() {
+const MainBoard =() => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [notes, setNotes] = useState([]);
@@ -22,12 +19,10 @@ function App() {
     getNotes()
   }, []);
 
-   
-  const addUpdateItem = () => {
+  const addUpdateNote = () => {
     if (isUpdating === "") {
       axios.post("/save-notes", { title, content })
         .then((res) => {
-          console.log(res.data);
           setTitle("");
           setContent("");
           getNotes()
@@ -37,7 +32,6 @@ function App() {
     else{
       axios.post("/update-notes", { _id: isUpdating, title, content } )
         .then((res) => {
-          console.log(res.data);
           setTitle("");
           setContent("");
           setUpdating("");
@@ -60,42 +54,20 @@ function App() {
     setUpdating(_id);
     setTitle(title);
     setContent(content);
+    title={title}
   }
 
   return (
     <div>
       <Header />
-      <div>
-      <form className="create-note">
-        <input
-            name="title"
-            onChange={(e) => setTitle(e.target.value)} 
-            onKeyUp={(e) => {
-              if (e.key === "Enter") {
-                addUpdateItem()
-              }
-            }}
-            value={title}
-            placeholder="Title"
-            type="text" 
-
-          />
-        <textarea
-          type="text" 
-          name="content"
-          onChange={(e) => setContent(e.target.value)} 
-          onKeyUp={(e) => {
-            if (e.key === "Enter") {
-                addUpdateItem()
-              }
-          }}
-          value={content}
-          placeholder="Take a note..."
-          rows= '3'
-        />
-          <Fab onClick={addUpdateItem}>{isUpdating ? <EditIcon /> : <AddIcon /> }</Fab>
-      </form>
-    </div>
+      <CreateArea 
+        setTitle={setTitle}
+        addUpdateNote={addUpdateNote}
+        setContent={setContent}
+        content={content}
+        title={title}
+        isUpdating={isUpdating}
+      />
       {notes.map(item => 
           <Note
             key={item._id}
@@ -112,4 +84,4 @@ function App() {
   );
 }
 
-export default App;
+export default MainBoard;
